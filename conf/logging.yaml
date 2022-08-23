@@ -1,0 +1,32 @@
+# LEVEL: NOTSET DEBUG INFO WARNING ERROR CRITICAL
+version: 1
+# disable_existing_loggers: False
+formatters:
+  verbose:
+    format: "%(asctime)s %(levelname)-8s %(name)s [%(filename)s:%(lineno)s] %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+  simple:
+    format: "%(levelname)-8s %(message)s"
+handlers:
+  rolling:
+    class: 'logging.handlers.ConcurrentRotatingFileHandler'
+    level: 'INFO'
+    formatter: 'verbose'
+    filename: '/tmp/logging.log'
+    # owner: ['root', 'nobody']
+    # chmod: 0o0660
+    maxBytes: 9999999
+    backupCount: 3
+    use_gzip: True
+    delay: True
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+loggers:
+  app:
+    level: NOTSET
+root:
+  level: NOTSET
+  handlers: [rolling]
