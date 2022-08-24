@@ -9,7 +9,8 @@ formatters:
     format: "%(levelname)-8s %(message)s"
 handlers:
   rolling:
-    class: 'logging.handlers.ConcurrentRotatingFileHandler'
+    # class: 'logging.handlers.ConcurrentRotatingFileHandler'
+    class: 'concurrent_log_handler.ConcurrentRotatingFileHandler'
     level: 'INFO'
     formatter: 'verbose'
     filename: '/tmp/myconfig.log'

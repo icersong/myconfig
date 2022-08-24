@@ -9,8 +9,6 @@ from path import Path
 
 from .config import ConfigLoader
 
-__import__("concurrent_log_handler")
-
 
 def initialize(loglevel=None, conf="logging.yaml", *, mode=os.getenv):
     # 获取日志配置
