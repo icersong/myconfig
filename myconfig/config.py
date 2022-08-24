@@ -27,7 +27,7 @@ class ConfigLoader:
     _config_paths = None
     _project_paths = None
 
-    def __init__(self, pkgname=None, *, config_paths=None, project_paths=None, prefix="conf"):
+    def __init__(self, pkgname, *, config_paths=None, project_paths=None, prefix="conf"):
         """初始化ConfigLoader
         @pkgname: 项目名称
         @config_paths: 指定搜索路径列表，会覆盖默认搜索列表

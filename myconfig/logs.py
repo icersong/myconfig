@@ -12,10 +12,10 @@ from .config import ConfigLoader
 __import__("concurrent_log_handler")
 
 
-def initialize(loglevel=None, conf="logging.yaml"):
+def initialize(loglevel=None, conf="logging.yaml", *, mode=os.getenv):
     # 获取日志配置
     cfgl = ConfigLoader()
-    cfg = cfgl.get(conf)
+    cfg = cfgl.get(conf, mode)
     # 创建日志目录
     for handler in cfg["handlers"].values():
         logfile = handler.get("filename")
