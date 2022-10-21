@@ -132,19 +132,23 @@ class ConfigLoader:
         raise FileNotFoundError(f"Can not found config file {filename}.\n{find_paths}")
 
     @cache
-    def get_yaml(self, confname, mode=os.getenv):
+    def get_yaml(self, confname="config.yaml", mode=os.getenv):
         """获取yaml配置，扩展名不存在，则自动添加扩展名"""
-        if not Path(confname).ext:
+        assert confname
+        if not Path(confname).ext or Path(confname).ext not in (".yaml", ".yml"):
             confname = f"{confname}.yaml"
         with self.get_file(confname, mode=mode).open("r", encoding="utf-8") as fp:
             return yaml.load(fp, Loader=IncudeLoader)
 
-    @cache
-    def get(self, confname, mode=os.getenv):
+    def get(self, confname="config.yaml", mode=os.getenv):
         """获取yaml配置，扩展名必须为yaml或yml"""
+        assert confname
         assert Path(confname).ext in (".yaml", ".yml")
-        with self.get_file(confname, mode=mode).open("r", encoding="utf-8") as fp:
-            return yaml.load(fp, Loader=IncudeLoader)
+        return self.get_yaml(confname, mode)
+
+    def cache_clear(self):
+        self.get_file.cache_clear()
+        self.get_yaml.cache_clear()
 
 
 if __name__ == "__main__":

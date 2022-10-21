@@ -9,17 +9,12 @@ readme = "README.md"
 #repository = "https://gitea.local/icersong/myconfig"
 
 [[tool.poetry.source]]
-name = "tsinghua"
-default = true
-url = "https://pypi.tuna.tsinghua.edu.cn/simple"
-
-[[tool.poetry.source]]
 # poetry config repositories.foo https://foo.bar/simple/
 # poetry config http-basic.foo username password
 # poetry pobulish -r som
 name = "som"
 url = "https://pypi.smart-factory.cn/simple/"
-secondary = true
+default = true
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -40,7 +35,7 @@ pkginfo = "^1.8.3"
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
-style = "semver"
+# style = "semver"
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
