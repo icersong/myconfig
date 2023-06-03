@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "myconfig"
+name = "myconfig4app"
 version = "1.1.0"
 description = ""
 authors = ["icersong <icersong@gmail.com>"]
